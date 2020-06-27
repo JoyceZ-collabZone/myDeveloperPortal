@@ -1,0 +1,30 @@
+{
+  "name": "openbankingdeveloperportal",
+  "version": "1.0.0",
+  "description": "project 2 ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JoyceZ-collabZone/OpenBankingProductApiApp.git"
+  },
+  "keywords": [
+    "developer",
+    "portal"
+  ],
+  "author": "Joyce Z",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JoyceZ-collabZone/OpenBankingProductApiApp/issues"
+  },
+  "homepage": "https://github.com/JoyceZ-collabZone/OpenBankingProductApiApp#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "mongoose": "^5.9.20"
+  }
+}
