@@ -43,3 +43,94 @@ userRouterMiddleware.post("/new", async (request, response) => {
 // get logout endpoint
 
 module.exports = userRouterMiddleware;
+
+
+username: {
+  type: String,
+  required: true,
+},
+password: {
+  type: String,
+  required: true,
+},
+profile: {
+  type: String,
+  enum: profileOption,
+  required: true,
+},
+legalEntityId: {
+  type: String,
+  required: false,
+},
+
+legalEntityName: {
+  type: String,
+  required: false,
+},
+industry: {
+  type: String,
+  required: false,
+},
+logoUri: {
+  type: String,
+  required: false,
+},
+
+//   dataRecipientProducts: [
+//     {
+//       type: mongoose.Schema.ObjectId,
+//       ref: "SoftwareProductModel",
+//     },
+//   ],
+status: {
+  type: String,
+  required: false,
+},
+
+lastUpdated: {
+  type: String,
+  required: false,
+},
+});
+
+<div class="topContainer">
+      <div id="appWrapper"></div>
+      <h1>heading</h1>
+      <p>test css</p>
+    </div>
+    <div class="navBar">
+      <div id="navbarid"></div>
+      <h1>nav bar</h1>
+      <p>test navbar</p>
+    </div>
+    <form id="form-onboarding" class="userform">
+      <div class="form-group">
+        <label for="username">user name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="usernameid"
+          placeholder="Eric"
+          name="username"
+        />
+      </div>
+      <div class="form-group">
+        <label for="password">password</label>
+        <input
+          type="password"
+          class="form-control"
+          id="passwordid"
+          name="passwordname"
+          placeholder="password..."
+        />
+      </div>
+      <div class="form-group">
+        <label for="exampleFormControlSelect2">profile selection</label>
+        <select multiple class="form-control" id="profileid">
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>

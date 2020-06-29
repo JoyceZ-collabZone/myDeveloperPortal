@@ -13,7 +13,7 @@ const ADRSchema = new mongoose.Schema({
   profile: {
     type: String,
     enum: profileOption,
-    required: true,
+    required: false,
   },
   legalEntityId: {
     type: String,
@@ -33,12 +33,15 @@ const ADRSchema = new mongoose.Schema({
     required: false,
   },
 
-  //   dataRecipientProducts: [
-  //     {
-  //       type: mongoose.Schema.ObjectId,
-  //       ref: "SoftwareProductModel",
-  //     },
-  //   ],
+  dataRecipientProducts: {
+    type: String,
+    required: false,
+  },
+  dataRecipientProductsDescription: {
+    type: String,
+    required: false,
+  },
+
   status: {
     type: String,
     required: false,

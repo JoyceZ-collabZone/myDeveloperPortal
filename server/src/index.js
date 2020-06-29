@@ -16,7 +16,8 @@ const appWebServer = expressAppMiddleware();
 const userRouter = require("./routes/UserRoutes");
 const ADRManagementRouter = require("./routes/ADRManagementRoutes");
 const profileRouter = require("./routes/ProfileRoutes");
-const profileRouterMiddleware = require("./routes/ProfileRoutes");
+const apiRouter = require("./routes/APIMetadataRoutes");
+
 // middleware
 appWebServer.use(expressAppMiddleware.json()); // build in express middleware, pass incoming request with JSON payload, json is function here (very important)
 appWebServer.use(
@@ -32,6 +33,7 @@ appWebServer.use(
 appWebServer.use("/user", userRouter);
 appWebServer.use("/ADRMetadata", ADRManagementRouter);
 appWebServer.use("/profile", profileRouter);
+appWebServer.use("/apimetadata", apiRouter);
 // appWebServer.use("/user", SoftwareProductRouter);
 // start web server backend, step 1
 appWebServer.listen(portNumber, () => {
