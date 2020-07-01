@@ -1,8 +1,8 @@
 const registrationSubmit = (ctx, next) => {
-    $("#app").empty();
-    $("#app").append(`
+  $("#app").empty();
+  $("#app").append(`
     
-    <div class="container">
+    <div class="container id="registrationId">
     <div class="row">
       <div class="col-5">
         <div class="sidenav">
@@ -24,5 +24,6 @@ const registrationSubmit = (ctx, next) => {
 </div> 
    
 `);
+  next(); // move to next middleware
 };
 export default registrationSubmit;

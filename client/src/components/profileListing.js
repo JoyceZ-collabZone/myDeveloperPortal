@@ -1,32 +1,32 @@
 // not working
-const profileLoadingPage = async(getProfiles) => {
-    try {
-        const response = await fetch("/api/profile", {
-            method: "GET",
-            mode: "cors",
-            credentials: "same-origin",
-            headers: {
-                "Content-Type": "application/json",
-            },
-        });
+import page from "//unpkg.com/page/page.mjs";
+const profileLoadingPage = async () => {
+  try {
+    const response = await fetch("/api/profile", {
+      method: "GET",
+      mode: "cors",
+      credentials: "same-origin",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
 
-        const getProfileResponse = await response.json();
+    const profileResponse = await response.json();
+    console.log(profileResponse);
 
-        function printProfileListing(getProfileResponse) {
-            getProfileResponse.forEach((profile) => {
-                console.log(profile);
-                const profileListingTag = $(
-                    `<option value="${getProfileResponse._id}">${profile.profilename}</option>`
-                );
-                console.log("testing is profile name is returned ");
-                $("#profile").append(profileListingTag);
-            });
-        }
-        console.log(getProfileResponse);
-        page.redirect("/home");
-    } catch (error) {
-        console.log("profile loading failed", error);
-    }
+    profileResponse.forEach((profile) => {
+      console.log(profile);
+      const optionTag = $(
+        `<option value="${profile._id}">${profile.profilename}</option>`
+      );
+      console.log("testing on profile name is returned ");
+      $("#profile").append(optionTag);
+    });
+    console.log(profileResponse);
+    // page.redirect("/home");
+  } catch (error) {
+    console.log("profile loading failed", error);
+  }
 };
 
 export default profileLoadingPage;

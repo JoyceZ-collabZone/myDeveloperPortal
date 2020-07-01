@@ -1,6 +1,6 @@
 const defaultHomePage = (ctx, next) => {
-    $("#app").empty();
-    $("#app").append(`<div class="topLevelContainer" id="wrapperContainerId">
+  $("#app").empty();
+  $("#app").append(`<div class="topLevelContainer" id="wrapperContainerId">
   
     <div class="container-fluid" id="bodyContainerId">
         <div class="row">
@@ -21,7 +21,7 @@ const defaultHomePage = (ctx, next) => {
         </div>
     </div>`);
 
-    next(); // move onto next middleware
+  next(); // move onto next middleware
 };
 
 export default defaultHomePage;

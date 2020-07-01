@@ -1,27 +1,28 @@
-const useronboardingSubmitHandler = async(formUserInputData) => {
-    try {
-        const response = await fetch("/api/user/new", {
-            method: "POST",
-            mode: "cors",
-            credentials: "same-origin",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(formUserInputData),
-        });
+import profileLoadingPage from "./profileListing.js";
+const useronboardingSubmitHandler = async (formUserInputData) => {
+  try {
+    const response = await fetch("/api/user/new", {
+      method: "POST",
+      mode: "cors",
+      credentials: "same-origin",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formUserInputData),
+    });
 
-        const userLoginResponse = await response.json();
-        console.log(userLoginResponse);
-        printProfileListing();
-        page.redirect("/home");
-    } catch (error) {
-        console.log("login submit", error);
-    }
+    const userLoginResponse = await response.json();
+    console.log(userLoginResponse);
+    printProfileListing();
+    page.redirect("/home");
+  } catch (error) {
+    console.log("login submit", error);
+  }
 };
 
 const useronboardingForm = (ctx, next) => {
-    $("#app").empty();
-    $("#app").append(`
+  $("#app").empty();
+  $("#app").append(`
     <div class="col-12 col-md-6 offset-md-3">
     <form  id="form-createUser" name="registrationForm">
         <div class="row">
@@ -50,20 +51,32 @@ const useronboardingForm = (ctx, next) => {
 
 
     `);
-    $("#profile").append(profileListingTag);
+  //   $("#profile").append(profileListingTag);
+  profileLoadingPage();
 
-    $("#form-createUser").submit((event) => {
-        event.preventDefault();
+  $("#form-createUser").submit((event) => {
+    event.preventDefault();
 
-        const userInputFormData = {
-            username: $("#username").val(),
-            password: $("#password").val(),
-            profile: $("#profile").val(),
-        };
-        console.log(userInputFormData);
-        useronboardingSubmitHandler(userInputFormData);
-        printProfileListing();
-    });
+    const userInputFormData = {
+      user: {
+        username: $("#username").val(),
+        password: $("#password").val(),
+      },
+      profileId: $("#profile").val(),
+    };
+
+    // {
+
+    //     "user": {
+    //     "username": "testuser680",
+    //     "password":"12345"},
+    //     "profileId": "5ef6d08df37bd72e443b47b8"
+    // }
+
+    console.log(userInputFormData);
+    useronboardingSubmitHandler(userInputFormData);
+    // printProfileListing();
+  });
 };
 
 export default useronboardingForm;

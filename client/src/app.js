@@ -6,28 +6,44 @@ page.configure({ window: window }); // bind to main window
 import defaultHomePage from "./components/defaultHomePage.js";
 import userLogin from "./components/userSignIn.js";
 import registrationSubmit from "./components/registrationManagement.js";
-import useronboardingSubmit from "./components/userOnboardingForm.js";
-// import profileLoadingPage from "./components/profileListing.js";
+import useronboardingForm from "./components/userOnboardingForm.js";
+import adronboardingForm from "./components/adrOnboardingForm.js";
+
 const showParentPages = () => {
-    //configure routes
+  //configure routes
 
-    page("/", () => {
-        page.redirect("/home");
-    });
+  page("/", () => {
+    page.redirect("/home");
+  });
 
-    page("/home", defaultHomePage, () => {
-        $("#app").append(`<h2> test</h2>`);
-    });
+  page("/home", defaultHomePage, () => {
+    $("#app").append(`<h2> test</h2>`);
+  });
 
-    page("/login", userLogin);
-    page("/registration", registrationSubmit);
-    page("/useronboarding", useronboardingSubmit);
+  page("/login", userLogin, () => {
+    $("#app").append(`<h2>user logged in</h2>`);
+  });
+  //   page("/profile", profileLoadingPage);
 
-    page({ hashbang: true });
+  page("/useronboarding", useronboardingForm, () => {
+    $("#app").append(`<h2>user logged in</h2>`);
+    console.log("Inside user onboarding");
+  });
+  page("/adronboarding", adronboardingForm, () => {
+    $("#app").append(`<h2>user logged in</h2>`);
+    console.log("Inside adr onboarding");
+  });
+
+  page("/registration", registrationSubmit, () => {
+    $("#registrationId").append(`<h1>Registration Management Page</h>`);
+  });
+
+  page(); // middleware to move next
+  page({ hashbang: true });
 };
 
 //jquery on ready
 $(() => {
-    console.log("pages ", page);
-    showParentPages();
+  console.log("pages on load ", page);
+  showParentPages();
 });
