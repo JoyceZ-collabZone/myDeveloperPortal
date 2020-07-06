@@ -1,5 +1,7 @@
+import page from "//unpkg.com/page/page.mjs";
 import profileLoadingPage from "./profileListing.js";
-const useronboardingSubmitHandler = async (formUserInputData) => {
+
+const useronboardingSubmitHandler = async (userInputFormData) => {
   try {
     const response = await fetch("/api/user/new", {
       method: "POST",
@@ -8,15 +10,17 @@ const useronboardingSubmitHandler = async (formUserInputData) => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(formUserInputData),
+      body: JSON.stringify(userInputFormData),
     });
 
     const userLoginResponse = await response.json();
     console.log(userLoginResponse);
     printProfileListing();
-    page.redirect("/home");
-  } catch (error) {
-    console.log("login submit", error);
+    page.redirect("/registration");
+    // page.redirect("/home");
+  } catch (e) {
+    console.log("login submit error block", e);
+    return [];
   }
 };
 
@@ -48,8 +52,6 @@ const useronboardingForm = (ctx, next) => {
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>
-
-
     `);
   //   $("#profile").append(profileListingTag);
   profileLoadingPage();
@@ -73,7 +75,7 @@ const useronboardingForm = (ctx, next) => {
     //     "profileId": "5ef6d08df37bd72e443b47b8"
     // }
 
-    console.log(userInputFormData);
+    console.log("logging user input", userInputFormData);
     useronboardingSubmitHandler(userInputFormData);
     // printProfileListing();
   });

@@ -1,3 +1,26 @@
+import profileLoadingPage from "./profileListing.js";
+profileLoadingPage();
+const adrForm = (formSubmit, buttonLable) => {
+  $(document).on("submit", "#form-createADR", (e) => {
+    e.preventDefault();
+    const adrInputFormData = {
+      username: $("#username").val(),
+      password: $("#password").val(),
+      profile: $("#legalEntityName").val(),
+      legalEntityName: $("#entitydesc").val(),
+      industry: $("#industry").val(),
+      legalEntityLogoURL: $("#entitylogo").val(),
+      dataRecipientProduct: $("#drproduct").val(),
+      dataRecipientProductDescription: $("#drproductdes").val(),
+      dataRecipientProductStatus: $("#drproductstatus").val(),
+    };
+    formSubmit(adrInputFormData);
+    // printProfileListing();
+  });
+
+  // template
+  return `
+
 <div class="container container-sm">
     <div class="row">
         <div class="col-12 col-md-6 offset-md-3">
@@ -92,12 +115,14 @@
                         </div>
                     </div>
                 </div>
-
-
                 <button type="submit" class="btn btn-primary btn-block btn-flat login-btn">
-                    Submit
+                ${buttonLable}
                 </button>
             </form>
         </div>
     </div>
 </div>
+`;
+};
+
+export default adrForm;

@@ -7,7 +7,10 @@ import defaultHomePage from "./components/defaultHomePage.js";
 import userLogin from "./components/userSignIn.js";
 import registrationSubmit from "./components/registrationManagement.js";
 import useronboardingForm from "./components/userOnboardingForm.js";
-import adronboardingForm from "./components/adrOnboardingForm.js";
+import adrForm from "./components/adrForm.js";
+import adrList from "./components/adrList.js";
+import adronboardingForm from "./components/newADR.js";
+import adrSingleUpdate from "./components/getADRByid.js";
 
 const showParentPages = () => {
   //configure routes
@@ -17,7 +20,7 @@ const showParentPages = () => {
   });
 
   page("/home", defaultHomePage, () => {
-    $("#app").append(`<h2> test</h2>`);
+    $("#app").append(`<h2>Hello Hamish</h2>`);
   });
 
   page("/login", userLogin, () => {
@@ -29,13 +32,22 @@ const showParentPages = () => {
     $("#app").append(`<h2>user logged in</h2>`);
     console.log("Inside user onboarding");
   });
-  page("/adronboarding", adronboardingForm, () => {
+  page("/adrget", adrList, () => {
     $("#app").append(`<h2>user logged in</h2>`);
+    console.log("Inside adr listing");
+  });
+
+  page("/displayById/:id", adrSingleUpdate, () => {
+    $("#app").append(`<h2>user logged in</h2>`);
+    console.log("Inside adr listing");
+  });
+
+  page("/adronboarding", adronboardingForm, () => {
     console.log("Inside adr onboarding");
   });
 
   page("/registration", registrationSubmit, () => {
-    $("#registrationId").append(`<h1>Registration Management Page</h>`);
+    $("#registrationId").append(`<h1>Registration Management Page</h1>`);
   });
 
   page(); // middleware to move next

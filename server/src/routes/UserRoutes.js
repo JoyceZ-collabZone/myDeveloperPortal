@@ -34,12 +34,21 @@ userRouterMiddleware.post("/new", async (request, response) => {
       });
       createdUserDocInMongo.save(); // loop and save
     } else {
-      createdUserDocInMongo.profile.push(getProfileDoc);
-      const singleProfileResponse = await createdUserDocInMongo.save();
-      console.log("joint response", singleProfileResponse);
-    }
+      getProfileDoc.forEach((profileindex) => {
+        createdUserDocInMongo.profile.push(profileindex);
+      });
+      createdUserDocInMongo.save(); // loop and save
+      // console.log("else for single response start");
+      // createdUserDocInMongo.profile.push(getProfileDoc);
+      // createdUserDocInMongo.save();
+      // console.log("joint response", createdUserDocInMongo);
 
-    // response.send(createdUserDocInMongo);
+      // createdUserDocInMongo.profile.push(getProfileDoc);
+
+      // console.log("joint response", singleProfileResponse);
+
+      // response.send(createdUserDocInMongo);
+    }
     response
       .status(200)
       .send(`user "${request.body.user.username}" created successfully`);

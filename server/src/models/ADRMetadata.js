@@ -10,11 +10,13 @@ const ADRSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  profile: {
-    type: String,
-    enum: profileOption,
-    required: false,
-  },
+  profile: [
+    {
+      type: mongoose.Schema.ObjectId,
+      ref: "ProfileModel",
+      required: false,
+    },
+  ],
   legalEntityId: {
     type: String,
     required: false,
@@ -24,25 +26,28 @@ const ADRSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
+  legalEntityDescription: {
+    type: String,
+    required: false,
+  },
+  legalEntityLogoURL: {
+    type: String,
+    required: false,
+  },
   industry: {
     type: String,
     required: false,
   },
-  logoUri: {
+  dataRecipientProduct: {
+    type: String,
+    required: false,
+  },
+  dataRecipientProductDescription: {
     type: String,
     required: false,
   },
 
-  dataRecipientProducts: {
-    type: String,
-    required: false,
-  },
-  dataRecipientProductsDescription: {
-    type: String,
-    required: false,
-  },
-
-  status: {
+  dataRecipientProductStatus: {
     type: String,
     required: false,
   },

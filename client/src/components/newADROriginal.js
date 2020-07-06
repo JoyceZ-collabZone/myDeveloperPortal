@@ -1,4 +1,33 @@
-<div class="container container-sm">
+import profileLoadingPage from "./profileListing.js";
+
+import page from "//unpkg.com/page/page.mjs";
+const adronboardingSubmitHandler = async (adrInputFormData) => {
+  try {
+    const response = await fetch("/api/ADRMetadata/new", {
+      method: "POST",
+      mode: "cors",
+      credentials: "same-origin",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(adrInputFormData),
+    });
+
+    const adrLoginResponse = await response.json();
+    console.log(adrLoginResponse);
+    printProfileListing();
+  } catch (e) {
+    console.log("adr login submit error block", e);
+    return [];
+  }
+  page.redirect("/registration");
+};
+
+const adronboardingForm = (ctx, next) => {
+  $("#apisidebar").empty();
+  $("#apisidebar").append(`
+    
+    <div class="container container-sm">
     <div class="row">
         <div class="col-12 col-md-6 offset-md-3">
             <form name="registrationForm" id="form-createADR">
@@ -92,12 +121,43 @@
                         </div>
                     </div>
                 </div>
-
-
-                <button type="submit" class="btn btn-primary btn-block btn-flat login-btn">
-                    Submit
+                <button type="submit" class="btn btn-primary btn-block btn-flat login-btn">Sumit
                 </button>
             </form>
         </div>
     </div>
 </div>
+ 
+    `);
+  profileLoadingPage();
+
+  $("#form-createADR").submit((event) => {
+    event.preventDefault();
+
+    const adrInputFormData = {
+      username: $("#username").val(),
+      password: $("#password").val(),
+      profile: $("#legalEntityName").val(),
+      legalEntityName: $("#entitydesc").val(),
+      industry: $("#industry").val(),
+      legalEntityLogoURL: $("#entitylogo").val(),
+      dataRecipientProduct: $("#drproduct").val(),
+      dataRecipientProductDescription: $("#drproductdes").val(),
+      dataRecipientProductStatus: $("#drproductstatus").val(),
+    };
+
+    // {
+
+    //     "user": {
+    //     "username": "testuser680",
+    //     "password":"12345"},
+    //     "profileId": "5ef6d08df37bd72e443b47b8"
+    // }
+
+    console.log("logging ADR onboarding input", adrInputFormData);
+    adronboardingSubmitHandler(adrInputFormData);
+    // printProfileListing();
+  });
+};
+
+export default adronboardingForm;
