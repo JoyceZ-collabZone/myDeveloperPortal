@@ -49,9 +49,9 @@ userRouterMiddleware.post("/new", async (request, response) => {
 
       // response.send(createdUserDocInMongo);
     }
-    response
-      .status(200)
-      .send(`user "${request.body.user.username}" created successfully`);
+    response.status(200).send({
+      message: `user "${request.body.user.username}" created successfully`,
+    });
   } catch (error) {
     console.log("catch error for user creation route ", error);
     response.status(500).send("user creation failed");

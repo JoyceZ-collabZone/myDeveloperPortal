@@ -1,5 +1,5 @@
 import profileLoadingPage from "./profileListing.js";
-profileLoadingPage();
+// profileLoadingPage();
 const adrForm = (formSubmit, buttonLable) => {
   $(document).on("submit", "#form-createADR", (e) => {
     e.preventDefault();
@@ -18,12 +18,24 @@ const adrForm = (formSubmit, buttonLable) => {
     // printProfileListing();
   });
 
+  profileLoadingPage().then((profileResponse) => {
+    profileResponse.forEach((profile) => {
+      console.log(profile);
+      const optionTag = $(
+        `<option value="${profile._id}">${profile.profilename}</option>`
+      );
+      console.log("testing on profile name is returned ");
+      $("#profile-list").append(optionTag);
+    });
+  });
+
   // template
   return `
 
 <div class="container container-sm">
     <div class="row">
         <div class="col-12 col-md-6 offset-md-3">
+            <div id="success-message"></div>
             <form name="registrationForm" id="form-createADR">
 
                 <div class="row">
@@ -45,7 +57,7 @@ const adrForm = (formSubmit, buttonLable) => {
 
                 <div class="form-group">
                     <label for="exampleFormControlSelect2">Profile selection</label>
-                    <select multiple class="form-control" id="profile">
+                    <select multiple class="form-control" id="profile-list">
                     </select>
                 </div>
 

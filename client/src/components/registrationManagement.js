@@ -11,15 +11,15 @@ const registrationSubmit = (ctx, next) => {
         <a href="./adronboarding">ADR Onboarding</a>
             
             <div class="container">
-               <a href="./ADRUpdate">ADR Update</a>
-        <a href="./ADRDelete">ADR Delete</a>
+           
+  
           <a href="./adrget">ADR Display</a>
+      
                  </div>
     </div>         
         </div>
       <div class="col-8" id="apisidebar">
-        <h1>API search</h1>      
-        <input type="text" placeholder="Search..">
+        <h1>Welcome to ADR management portal</h1>      
         </div>   
     </div> 
 </div> 

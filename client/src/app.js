@@ -19,9 +19,7 @@ const showParentPages = () => {
     page.redirect("/home");
   });
 
-  page("/home", defaultHomePage, () => {
-    $("#app").append(`<h2>Hello Hamish</h2>`);
-  });
+  page("/home", defaultHomePage, () => {});
 
   page("/login", userLogin, () => {
     $("#app").append(`<h2>user logged in</h2>`);

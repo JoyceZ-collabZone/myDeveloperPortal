@@ -1,5 +1,6 @@
 import page from "//unpkg.com/page/page.mjs";
 import adrForm from "./adrForm.js";
+// import profileLoadingPage from "./profileListing";
 
 const newADRSubmitHandler = async (adrInputFormData) => {
   try {
@@ -13,14 +14,12 @@ const newADRSubmitHandler = async (adrInputFormData) => {
       body: JSON.stringify(adrInputFormData),
     });
 
-    const adrOnboardingResponse = await response.text();
-    console.log(adrOnboardingResponse);
+    const { message } = await response.json();
 
     $("#apisidebar").empty();
     $("#apisidebar").append(
-      `<div class="list-group">${adrOnboardingResponse}</div>`
+      `<div class="list-group"><h3>${message}</h3></div>`
     );
-    page.redirect("/registration");
 
     // page.redirect("./adrget");
   } catch (error) {

@@ -15,9 +15,12 @@ const useronboardingSubmitHandler = async (userInputFormData) => {
 
     const userLoginResponse = await response.json();
     console.log(userLoginResponse);
-    printProfileListing();
-    page.redirect("/registration");
+    const { message } = userLoginResponse;
+    console.log(message);
+    // page.redirect("/registration");
     // page.redirect("/home");
+    $("#form-createUser").hide();
+    $("#success-message").html(`<h3>${message}</h3>`);
   } catch (e) {
     console.log("login submit error block", e);
     return [];
@@ -28,6 +31,7 @@ const useronboardingForm = (ctx, next) => {
   $("#app").empty();
   $("#app").append(`
     <div class="col-12 col-md-6 offset-md-3">
+    <div id="success-message"></div>
     <form  id="form-createUser" name="registrationForm">
         <div class="row">
             <div class="col-md-6 col-12">

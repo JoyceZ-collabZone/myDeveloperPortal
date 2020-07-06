@@ -11,9 +11,10 @@ ADRMetadataRouterMiddleware.post("/new", async (request, response) => {
       request.body
     );
     console.log("logging request", createdADRMetadataDocInMongo);
-    response
-      .status(200)
-      .send(`ADR"${request.body.username}" created successfully`);
+
+    response.status(200).send({
+      message: `ADR "${request.body.username}" created successfully`,
+    });
   } catch (error) {
     console.log("catch error for user creation route ", error);
     response.status(500).send("user creation failed");

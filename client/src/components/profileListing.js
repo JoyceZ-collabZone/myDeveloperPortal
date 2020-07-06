@@ -24,6 +24,7 @@ const profileLoadingPage = async () => {
     });
     console.log(profileResponse);
     // page.redirect("/home");
+    return Promise.resolve(profileResponse);
   } catch (error) {
     console.log("profile loading failed", error);
   }

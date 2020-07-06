@@ -24,6 +24,21 @@ const adrListHandler = async (ctx, next) => {
   // }
 
   try {
+    $(document).on("click", "#deleteBtn", (event) => {
+      fetch("api/ADRMetadata/delete/" + $(event.target).data("adrid"), {
+        method: "DELETE",
+        mode: "cors",
+        credentials: "same-origin",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((resonse) => {
+          page.redirect("/adrget");
+        })
+        .catch((err) => console.error(err));
+    });
+
     const response = await fetch("/api/ADRMetadata", {
       method: "GET",
       mode: "cors",
@@ -41,7 +56,7 @@ const adrListHandler = async (ctx, next) => {
     adrMetadataResponse.forEach((adr) => {
       ul =
         ul +
-        `<a class="list-group-item list-group-item-action" href="/displayById/${adr._id}">${adr.username}</a>`;
+        `<li class="list-group-item list-group-item-action"><a class="" href="/displayById/${adr._id}">${adr.username}</a><button type="button" id="deleteBtn" data-adrid="${adr._id}" class="pull-right tn btn-danger">Delete</button></li>`;
     });
     console.log("ul", ul);
     $("#apisidebar").append(`<div class="list-group">${ul}</div>`);
